@@ -1,0 +1,28 @@
+<div class="container">
+  <div rtl>
+    <h1 class="main-heading">{{ "stms.favorite.title" | translate }}</h1>
+    <div class="actions">
+      <div *ngFor="let favorite of favorites$ | async">
+        <mat-card>
+          <ng-container *ngIf="favorite.defaultId; else itemOrder">
+            <p>Patient: {{ favorite.fullName }}</p>
+            <p>Id {{ favorite.defaultId }}</p>
+            <button
+              mat-icon-button
+              (click)="onTogglePatientsFavotites(favorite)"
+            >
+              Remove
+            </button>
+          </ng-container>
+          <ng-template #itemOrder>
+            <p>Creation Date {{ favorite.creationDate.dateTime }}</p>
+            <p>Create by {{ favorite.creator?.name }}</p>
+            <button mat-icon-button (click)="onToggleOrdersFavotites(favorite)">
+              Remove
+            </button>
+          </ng-template>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

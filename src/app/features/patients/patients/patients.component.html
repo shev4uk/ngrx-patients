@@ -1,0 +1,18 @@
+<div class="container">
+  <div rtl>
+    <h1 class="main-heading">{{ 'stms.patients.title' | translate }}</h1>
+    <div class="actions">
+      <a mat-raised-button class="actions-main" color="primary" (click)="onFetchPatients()">
+        {{ 'stms.patients.get-patients' | translate }}
+      </a>
+      <div *ngFor="let patient of patients$ | async; let i = index">
+        <mat-card>
+          <p>First Name: {{patient.firstName}}</p>
+          <button mat-button (click)="onToggleFavotites(patient)">
+            {{patient.favorite ? 'Added': 'Add'}}
+          </button>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
